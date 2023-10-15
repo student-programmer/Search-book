@@ -1,21 +1,11 @@
-
 import { makeAutoObservable } from 'mobx';
-
-interface Book {
-	id: string;
-	volumeInfo: {
-		title: string;
-		authors?: string[];
-		description?: string;
-		imageLinks?: {
-			thumbnail: string;
-		};
-	};
-}
+import { Book } from '../type/type';
 
 class BookStore {
 	query: string = '';
 	books: Book[] = [];
+	categoryFilter: string = 'all'; // Добавлено свойство для хранения текущей категории
+	sortFilter: string = 'relevance'; // Добавлено свойство для хранения текущей сортировки
 
 	constructor() {
 		makeAutoObservable(this);
@@ -28,6 +18,18 @@ class BookStore {
 	setBooks = (newBooks: Book[]) => {
 		this.books = newBooks;
 	};
+
+	setCategoryFilter = (newCategory: string) => {
+		this.categoryFilter = newCategory;
+	};
+
+	setSortFilter = (newSort: string) => {
+		this.sortFilter = newSort;
+	};
+
+	getBookById(bookId: string) {
+		return this.books.find(book => book.id === bookId);
+	}
 }
 
 export const store = new BookStore();

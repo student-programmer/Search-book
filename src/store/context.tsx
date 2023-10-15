@@ -8,11 +8,7 @@ interface MobXProviderProps {
 }
 
 export const MobXProvider: React.FC<MobXProviderProps> = ({ children }) => {
-	return (
-		<MobXContext.Provider value={store}>
-			{children}
-		</MobXContext.Provider>
-	);
+	return <MobXContext.Provider value={store}>{children}</MobXContext.Provider>;
 };
 
 export const useMobXStore = () => {

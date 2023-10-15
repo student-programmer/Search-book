@@ -7,5 +7,6 @@ export interface Book {
 		imageLinks?: {
 			thumbnail: string;
 		};
+		categories?: string[];
 	};
 }
